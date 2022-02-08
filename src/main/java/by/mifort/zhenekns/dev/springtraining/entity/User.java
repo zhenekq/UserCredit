@@ -4,10 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 
@@ -25,7 +22,11 @@ public class User {
     @NonNull
     private long id;
 
+    @NonNull
+    @Column(nullable = false)
     private String name;
+    @NonNull
+    @Column(nullable = false)
     private String surname;
 
     public User(String name, String surname) {
