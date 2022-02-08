@@ -1,13 +1,7 @@
 package by.mifort.zhenekns.dev.springtraining.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import javax.persistence.*;
-import java.util.Objects;
-
-
 
 @Entity
 @Getter
@@ -15,6 +9,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
@@ -28,6 +23,13 @@ public class User {
     @NonNull
     @Column(nullable = false)
     private String surname;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private UserInfo userInfo;
+
+    @OneToOne(mappedBy = "user")
+    private BankAccount bankAccount;
 
     public User(String name, String surname) {
         this.name = name;
